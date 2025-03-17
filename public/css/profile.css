@@ -1,0 +1,337 @@
+/* Main body and basic structure */
+body {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+/* Sidebar */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    background-color: #333;
+    z-index: 2;
+    overflow-y: auto;
+    transition: width 0.3s;
+}
+
+#sidebar.collapsed {
+    width: 60px;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar li {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#sidebar li i {
+    margin-right: 10px;
+}
+
+#sidebar.collapsed .link-text {
+    display: none;
+}
+
+#sidebar li:hover {
+    background-color: #34495e;
+}
+
+#sidebar li.active {
+    background-color: #1abc9c;
+}
+
+.toggle-icon {
+    cursor: pointer;
+    margin: 18px;
+    color: white;
+}
+
+/* Top bar with user info and logout button */
+#top-bar {
+    position: fixed;
+    top: 0;
+    left: 200px;
+    right: 0;
+    height: 50px;
+    background-color: #1abc9c;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 20px;
+    box-sizing: border-box;
+    transition: left 0.3s;
+    z-index: 11;
+}
+
+#top-bar #user-name {
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+#top-bar #logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+/* Adjust content area with sidebar and top-bar */
+#content {
+    margin-top: 50px;
+    margin-left: 200px;
+    padding: 20px;
+    width: calc(100% - 200px);
+    box-sizing: border-box;
+    transition: margin-left 0.3s;
+}
+
+#sidebar.collapsed + #top-bar {
+    left: 60px;
+}
+
+#sidebar.collapsed + #top-bar + #content {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+}
+
+#content.collapsed {
+    margin-left: 60px;
+}
+.content-section {
+    width: 100%;
+}
+.hidden {
+    display: none;
+}
+
+/* Button row styles */
+.button-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px; /* Space between the buttons and table */
+}
+
+.action-btn {
+    padding: 10px 30px;
+    font-size: 16px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-size: 30px;
+    transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+    background-color: #097761; /* Darker shade of the button */
+}
+
+/* Add Column Form Styles */
+.form-container {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.form-container h3 {
+    margin-top: 0;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-container input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #16a085;
+}
+
+.assign-btn {
+    padding: 5px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 1.8s; 
+}
+
+.assign-btn:hover {
+    background-color: #095345;
+}
+
+.edit-btn {
+    padding: 5px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 1.8s;
+}
+
+.edit-btn:hover {
+    background-color: #095345;
+}
+
+.go-to-project-btn {
+    padding: 5px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 1.8s;
+}
+
+.go-to-project-btn:hover {
+    background-color: #095345;
+}
+
+.approve-btn, .reject-btn {
+    padding: 5px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 1.8s;
+}
+
+.approve-btn, .reject-btn:hover {
+    background-color: #095345;
+}
+
+/* Modal Background (gray overlay) */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Gray background with transparency */
+    display: none; /* Initially hidden */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure modal is above other content */
+    padding: 20px;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fff; /* White background for the modal */
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Show the modal */
+.modal:not(.hidden) {
+    display: flex; /* Use flexbox to center modal */
+}
+
+#project-specific-container {
+    margin-top: 20px;
+}
+
+#project-specific-container h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #f4f4f4;
+}
+
+/* Scrollable container */
+.scrollable-table-container {
+    overflow-y: auto;
+    max-height: 400px; /* Adjust this as needed */
+    border: 1px solid #ccc;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Fixed Header Row */
+thead th {
+    position: sticky;
+    top: 0; /* Stick to the top */
+    background-color: #f2f2f2; /* Light grey background */
+    z-index: 10; /* Ensure it stays on top */
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+}
+
+/* Table rows and cells */
+tbody td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra striping for rows */
+}

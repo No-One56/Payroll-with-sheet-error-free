@@ -1,0 +1,129 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0; /* Set padding to 0 to avoid spacing issues */
+}
+
+/* Simple CSS for the top bar */
+.topbar {
+    position: fixed; /* Fix the position to keep it at the top */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    right: 0; /* Align to the right */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f4f4f4; /* Light background color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.topbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Dark text color */
+}
+
+.topbar .btn {
+    padding: 8px 15px;
+    background-color: #007BFF; /* Bootstrap primary color */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.topbar .btn:hover {
+    background-color: #0056b3; /* Darker shade for hover */
+}
+
+.container {
+    text-align: center;
+    margin-top: 80px; /* Add margin-top to avoid overlap with the top bar */
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4cae4c;
+}
+
+
+
+
+
+
+body {
+    font-family: Arial, sans-serif; /* Set a default font */
+    background-color: #f4f4f4; /* Light gray background */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full height of the viewport */
+}
+
+.container {
+    text-align: center; /* Center text */
+    background-color: #fff; /* White background for the container */
+    padding: 20px; /* Padding around the content */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+h1 {
+    color: #333; /* Dark gray text color */
+    margin-bottom: 20px; /* Space below the heading */
+    justify-content: center;
+    align-items: center;
+}
+
+.links {
+    display: flex; /* Use flexbox for link arrangement */
+    justify-content: center; /* Center links */
+    align-items: center;
+}
+
+.btn {
+    text-decoration: none; /* Remove underline from links */
+    color: #fff; /* White text */
+    background-color: #007bff; /* Blue background */
+    padding: 10px 15px; /* Padding around the button */
+    border-radius: 5px; /* Rounded corners for buttons */
+    margin: 0 10px; /* Space between buttons */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+ 

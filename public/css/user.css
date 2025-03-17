@@ -1,0 +1,196 @@
+/* Main body and basic structure */
+body {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+/* Sidebar */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    background-color: #333;
+    z-index: 2;
+    overflow-y: auto;
+    transition: width 0.3s;
+}
+
+#sidebar.collapsed {
+    width: 60px;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar li {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#sidebar li i {
+    margin-right: 10px;
+}
+
+#sidebar.collapsed .link-text {
+    display: none;
+}
+
+#sidebar li:hover {
+    background-color: #34495e;
+}
+
+#sidebar li.active {
+    background-color: #1abc9c;
+}
+
+.toggle-icon {
+    cursor: pointer;
+    margin: 18px;
+    color: white;
+}
+
+/* Top bar with user info and logout button */
+#top-bar {
+    position: fixed;
+    top: 0;
+    left: 200px;
+    right: 0;
+    height: 50px;
+    background-color: #1abc9c;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 20px;
+    box-sizing: border-box;
+    transition: left 0.3s;
+}
+
+#top-bar #user-name {
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+#top-bar #logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+/* Adjust content area with sidebar and top-bar */
+#content {
+    margin-top: 50px;
+    margin-left: 200px;
+    padding: 20px;
+    width: calc(100% - 200px);
+    box-sizing: border-box;
+    transition: margin-left 0.3s;
+}
+
+#sidebar.collapsed + #top-bar {
+    left: 60px;
+}
+
+#sidebar.collapsed + #top-bar + #content {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+}
+
+#content.collapsed {
+    margin-left: 60px;
+}
+.content-section {
+    width: 100%;
+}
+.hidden {
+    display: none;
+}
+ 
+ 
+
+.form-container {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.form-container h3 {
+    margin-top: 0;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-container input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #16a085;
+}
+
+
+
+
+
+
+#project-specific-container {
+    margin-top: 20px;
+}
+
+#project-specific-container h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #f4f4f4;
+}
+
+#assigned-table th {
+    background-color: #1abc9c;
+}

@@ -1,0 +1,541 @@
+/* Main body and basic structure */
+body {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+/* Sidebar */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    background-color: #333;
+    z-index: 2;
+    overflow-y: auto;
+    transition: width 0.3s;
+}
+
+#sidebar.collapsed {
+    width: 60px;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar li {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#sidebar li i {
+    margin-right: 10px;
+}
+
+#sidebar.collapsed .link-text {
+    display: none;
+}
+
+#sidebar li:hover {
+    background-color: #34495e;
+}
+
+#sidebar li.active {
+    background-color: #1abc9c;
+}
+
+.toggle-icon {
+    cursor: pointer;
+    margin: 18px;
+    color: white;
+}
+
+/* Top bar with user info and logout button */
+#top-bar {
+    position: fixed;
+    top: 0;
+    left: 200px;
+    right: 0;
+    height: 50px;
+    background-color: #1abc9c;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 20px;
+    box-sizing: border-box;
+    transition: left 0.3s;
+    z-index: 11;
+}
+
+#top-bar #user-name {
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+#top-bar #logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+/* Adjust content area with sidebar and top-bar */
+#content {
+    margin-top: 50px;
+    margin-left: 200px;
+    padding: 20px;
+    width: calc(100% - 200px);
+    box-sizing: border-box;
+    transition: margin-left 0.3s;
+}
+
+#sidebar.collapsed + #top-bar {
+    left: 60px;
+}
+
+#sidebar.collapsed + #top-bar + #content {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+}
+
+#content.collapsed {
+    margin-left: 60px;
+}
+.content-section {
+    width: 100%;
+}
+.hidden {
+    display: none;
+}
+
+
+
+
+/* Button row styles */
+.button-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px; /* Space between the buttons and table */
+}
+
+.action-btn {
+    padding: 10px 30px;
+    font-size: 16px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+    background-color: #097761; /* Darker shade of the button */
+}
+
+
+
+
+
+/* Form Container */
+
+
+/* Add Column Form Styles */
+.form-container {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.form-container h3 {
+    margin-top: 0;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-container input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #16a085;
+}
+
+.assign-btn {
+    padding: 5px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 1.8s; 
+}
+
+.assign-btn:hover {
+    background-color: #095345;
+}
+
+.edit-btn {
+    padding: 5px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 1.8s;
+}
+
+.edit-btn:hover {
+    background-color: #095345;
+}
+.go-to-project-btn {
+    padding: 5px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 1.8s;
+}
+.go-to-project-btn:hover {
+    background-color: #095345;
+}
+.approve-btn, .reject-btn {
+    padding: 5px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 1.8s;
+}
+.approve-btn, .reject-btn:hover {
+    background-color: #095345;
+}
+
+
+
+/* Scrollable container */
+.scrollable-table-container {
+    overflow-y: auto;
+    max-height: 400px; /* Adjust this as needed */
+    border: 1px solid #ccc;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Fixed Header Row */
+thead th {
+    position: sticky;
+    top: 0; /* Stick to the top */
+    background-color: #f2f2f2; /* Light grey background */
+    z-index: 10; /* Ensure it stays on top */
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+}
+
+/* Table rows and cells */
+tbody td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra striping for rows */
+}
+
+
+
+#project-specific-container {
+    margin-top: 20px;
+}
+
+#project-specific-container h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#assigned-table th {
+    background-color: #1abc9c;
+}
+
+#asssigned-table th {
+    background-color: #1abc9c;
+}
+
+#unassigned-table th {
+    background-color: #940303;
+}
+
+#submitted-table th {
+    background-color: #07a5b1;
+}
+
+#hourly-assigned-table th {
+    background-color: #1abc9c;
+}
+
+
+#hourly-unassigned-table th {
+    background-color: #bd0c0c;
+}
+
+
+/* Modal Background (gray overlay) */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Gray background with transparency */
+    display: none; /* Initially hidden */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure modal is above other content */
+    padding: 20px;
+}
+
+/* Show the modal */
+.modal:not(.hidden) {
+    display: flex; /* Use flexbox to center modal */
+    align-items: flex-start; /* Align modal to the top of the screen */
+    overflow-y: auto; /* Allow the background to scroll if needed */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.modal-content {
+    background-color: #fff; /* White background for the modal */
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh; /* Restrict modal height to 90% of the viewport */
+    overflow-y: auto; /* Enable vertical scrolling when content overflows */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+
+/* Show the modal */
+.modal:not(.hidden) {
+    display: flex;
+    /* Use flexbox to center modal */
+}
+
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#lumpsum-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000;
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.modal-content {
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Smaller width */
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+
+.modal-content h3 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+#lumpsum-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#lumpsum-table th,
+#lumpsum-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#lumpsum-table th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+}
+
+.approve-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.approve-btn:hover {
+    background-color: #45a049;
+}
+
+.close-icon {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5em;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-icon:hover {
+    color: #f44336; /* Red on hover */
+}
+
+/* Centering the Hourly Calculation Modal */
+#hourly-calculation-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-width: 800px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1050; /* Ensure it's above other modals */
+    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Hourly Calculation Modal Overlay */
+#hourly-calculation-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1049; /* Below modal but above other content */
+    display: none; /* Hidden by default */
+}
+
+/* Modal Content for Hourly Calculation */
+#hourly-calculation-modal .hourly-modal-content {
+    position: relative;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+/* Close Icon for Hourly Modal */
+#hourly-calculation-modal .hourly-close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Table Styling in Hourly Modal */
+#hourly-calculation-modal #hourly-calculation-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#hourly-calculation-modal #hourly-calculation-table th,
+#hourly-calculation-modal #hourly-calculation-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+#hourly-calculation-modal #hourly-calculation-table input[type="number"] {
+    width: 60%;
+    padding: 5px;
+}
+
+/* Approve Button Styling */
+#hourly-calculation-modal .hourly-approve-btn {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#hourly-calculation-modal .hourly-approve-btn:hover {
+    background-color: #45a049;
+}

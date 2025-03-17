@@ -1,0 +1,399 @@
+/* Main body and basic structure */
+body {
+    display: flex;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+#sidebar {
+    position: fixed;
+    /* Fix the sidebar on the left */
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 180px;
+    /* Sidebar width */
+    background-color: #333;
+    /* Sidebar background */
+    z-index: 200;
+    /* Make sure the sidebar is above the table content */
+    overflow-y: auto;
+    /* Scrollable sidebar if content overflows */
+    transition: width 0.3s;
+}
+
+/* Style for collapsed sidebar */
+#sidebar.collapsed {
+    width: 60px;
+    /* Width when collapsed */
+}
+
+#sidebar ul {
+    list-style-type: none;
+    /* Remove bullets */
+    padding: 0;
+    /* No padding */
+    margin: 0;
+    /* No margin */
+}
+
+#sidebar li {
+    display: flex;
+    /* Use flexbox */
+    align-items: center;
+    /* Center items vertically */
+    padding: 15px;
+    /* Padding around the item */
+    color: white;
+    /* Text color */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    transition: background-color 0.3s;
+    /* Smooth background transition */
+}
+
+#sidebar li i {
+    margin-right: 10px;
+    /* Space between icon and text */
+}
+
+/* Hide link text when collapsed */
+#sidebar.collapsed .link-text {
+    display: none;
+    /* Hide text */
+}
+
+/* Show the sidebar links */
+#sidebar li:hover {
+    background-color: #34495e;
+    /* Change background on hover */
+}
+
+#sidebar li.active {
+    background-color: #1abc9c;
+    /* Active link background */
+}
+
+.toggle-icon {
+    cursor: pointer;
+    /* Pointer cursor on toggle icon */
+    margin: 18px;
+    /* Margin for toggle icon */
+    color: white;
+    /* Icon color */
+}
+
+/* Adjust content area with sidebar and top-bar */
+#content {
+    margin-top: 50px;
+    margin-left: 200px;
+    padding: 20px;
+    width: calc(100% - 200px);
+    box-sizing: border-box;
+    transition: margin-left 0.3s;
+}
+
+#sidebar.collapsed+#top-bar {
+    left: 60px;
+}
+
+#sidebar.collapsed+#top-bar+#content {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+}
+
+#content.collapsed {
+    margin-left: 60px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    /* Stack the sections vertically */
+    width: calc(100% - 250px);
+    /* Full width minus the sidebar width */
+}
+
+.content-section {
+    width: 100%;
+    /* Ensure the content section takes full width */
+}
+
+.hidden {
+    display: none;
+}
+
+/* Button row styles */
+.button-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+    /* Space between the buttons and table */
+}
+
+.action-btn {
+    padding: 10px 30px;
+    font-size: 16px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+    background-color: #097761;
+    /* Darker shade of the button */
+}
+
+
+
+
+
+/* Form Container */
+
+
+/* Add Column Form Styles */
+.form-container {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.form-container h3 {
+    margin-top: 0;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-container input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #16a085;
+}
+
+.assign-btn {
+    padding: 5px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 1.8s;
+}
+
+.assign-btn:hover {
+    background-color: #095345;
+}
+
+#coordinator-section, #user-section {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#coordinator-section h4, #user-section h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+
+.edit-btn {
+    padding: 5px 20px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 1.8s;
+}
+
+.edit-btn:hover {
+    background-color: #095345;
+}
+
+
+/* Modal Background (gray overlay) */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Gray background with transparency */
+    display: none; /* Initially hidden */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure modal is above other content */
+    padding: 20px;
+}
+
+
+/* Show the modal */
+.modal:not(.hidden) {
+    display: flex; /* Use flexbox to center modal */
+    align-items: flex-start; /* Align modal to the top of the screen */
+    overflow-y: auto; /* Allow the background to scroll if needed */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+.modal-content {
+    background-color: #fff; /* White background for the modal */
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh; /* Restrict modal height to 90% of the viewport */
+    overflow-y: auto; /* Enable vertical scrolling when content overflows */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Show the modal */
+.modal:not(.hidden) {
+    display: flex;
+    /* Use flexbox to center modal */
+}
+
+
+.go-to-project-btn {
+    pointer: cursor;
+}
+
+
+
+
+#project-specific-container {
+    margin-top: 20px;
+}
+
+#project-specific-container h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-left: -3%;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #c9c9c9;
+}
+
+#assigned-table th {
+    background-color: #1abc9c;
+}
+
+#unassigned-table th {
+    background-color: #940303;
+}
+
+#hourly-assigned-table th {
+    background-color: #1abc9c;
+}
+
+#hourly-unassigned-table th {
+    background-color: #bd0c0c;
+}
+
+
+/* Scrollable container */
+.scrollable-table-container {
+    overflow-y: auto;
+    max-height: 400px;
+    /* Adjust this as needed */
+    border: 1px solid #ccc;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Fixed Header Row */
+thead th {
+    position: sticky;
+    top: 0;
+    /* Stick to the top */
+    background-color: #f2f2f2;
+    /* Light grey background */
+    z-index: 10;
+    /* Ensure it stays on top */
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+}
+
+/* Table rows and cells */
+tbody td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+    /* Zebra striping for rows */
+}
+
+.context-menu {
+    font-size: 14px;
+    min-width: 120px;
+    border-radius: 4px;
+}
+.context-menu div:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+
+#user-dropdown {
+    margin-bottom: 30px;
+}
+#profile-dropdown {
+    margin-bottom: 30px;
+}

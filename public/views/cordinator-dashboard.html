@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/cordinator.css"> <!-- User-specific CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Cordinator-Dashboard</title>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <div id="toggle" class="toggle-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul>
+            <li data-content="home" id="homeBtn" class="active">
+                <i class="fas fa-home"></i>
+                <span class="link-text">Home</span>
+            </li>
+            <li data-content="dashboard" id="dashboardBtn">
+                <i class="fas fa-tachometer-alt"></i>
+                <span class="link-text">Dashboard</span>
+            </li>
+            <li data-content="payroll" id="payroll-tab">
+                <i class="fas fa-money-bill"></i>
+                <span class="link-text">Payroll</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Top Bar with User Info -->
+    <div id="top-bar">
+        <span id="user-name">User</span>
+        <button onclick="logout()" id="logout-btn">Logout</button>
+    </div>
+
+    <div class="content" id="content">
+        <!-- Content Sections -->
+        <div id="home" class="content-section">
+            <p>Welcome <span id="welcome-user-name"></span>!</p>
+
+
+            <h3>Assigned Projects to Cordinator</h3>
+            <table border="1" id="assigned-table" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Project Id</th>
+                        <th>Project Name</th>
+                        <th>Profile Name</th>
+                        <th>Sheet Name</th>
+                        <th>Total Entries</th>
+                        <th>ProjectType</th>
+                        <th>fixed Option</th>
+                        <th>Lumpsum Price</th>
+                        <th>Price Worker One</th>
+                        <th>Price Worker Two</th>
+                        <th>Price Per Hour</th>
+                        <th>Shift</th>
+                        <th>Go to Project</th> <!-- New column -->
+                        <th>Submit Project</th> <!-- New column -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Assigned projects will be populated here -->
+                    <tr>
+                        <td colspan="4">No data available</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+            <h3>Project for Supervision</h3>
+            <table border="1" id="supervision-table" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Project Id</th>
+                        <th>Project Name</th>
+                        <th>Profile Name</th>
+                        <th>Sheet Name</th>
+                        <th>Total Entries</th>
+                        <th>ProjectType</th>
+                        <th>fixed Option</th>
+                        <th>Lumpsum Price</th>
+                        <th>Price Worker One</th>
+                        <th>Price Worker Two</th>
+                        <th>Price Per Hour</th>
+                        <th>Shift</th>
+                        <th>Assign to</th>
+                        <th>Go to Project</th> <!-- New column -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="9">No data available</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+            <!-- Placeholder for dynamically generated project-specific table -->
+            <div id="project-specific-container" style="margin-top: 20px;"></div>
+        </div>
+
+
+        <div id="dashboard" class="content-section hidden">
+            <h2>Dashboard Content</h2>
+            <p>Here is the dashboard content.</p>
+        </div>
+
+        <div id="payroll" class="content-section hidden">
+            <h2>Payroll Content</h2>
+            <table id="payroll-table" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Project ID</th>
+                        <th>Project Name</th>
+                        <th>Profile Name</th>
+                        <th>Sheet Name</th>
+                        <th>Total Entries</th>
+                        <th>Shift</th>
+                        <th>Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be dynamically populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../js/cordinator.js" defer></script> <!-- User-specific JavaScript file -->
+</body>
+
+</html>

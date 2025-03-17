@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Admin Signup</title>
+</head>
+
+<body>
+
+
+
+ 
+    <div class="topbar">
+        <div class="logo">Payroll Project</div>
+        <div>
+            <a href="/auth/signup" class="btn">Sign Up</a>
+            <a href="/auth/login" class="btn">Login</a>
+            <a href="/auth/admin-signup" class="btn">Register as Admin</a> <!-- Admin Signup Link -->
+            <a href="/auth/manager-signup" class="btn">Register as Manager</a> <!-- Manager Signup Link -->
+            <a href="/auth/cordinator-signup" class="btn">Register as Cordinator</a>
+            <a href="/auth/profile-signup" class="btn">Register as Profile</a>
+        </div>
+    </div>
+
+    
+    <div class="container">
+        <h2>Admin Signup</h2>
+        <!-- admin-signup.html -->
+        <form id="adminSignupForm" action="/auth/admin-signup" method="POST">
+            <input type="hidden" name="role" value="admin"> <!-- Hidden role field for admin -->
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="phone" placeholder="Phone" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="adminKey" placeholder="Admin Key" required>
+            <button type="submit">Signup</button>
+        </form>
+
+        <p>Already have an account? <a href="/auth/login">Login here</a></p>
+    </div>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

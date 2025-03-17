@@ -1,0 +1,76 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Light gray background */
+    color: #333; /* Dark text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+.container {
+    text-align: center; /* Center the text */
+}
+
+form {
+    background-color: #fff; /* White background for form */
+    padding: 20px;
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 300px; /* Set width of the form */
+    margin: 0 auto; /* Center the form */
+}
+
+h1 {
+    margin-bottom: 20px; /* Space below heading */
+}
+
+label {
+    display: block; /* Block display for labels */
+    margin-bottom: 5px; /* Space below labels */
+    font-weight: bold; /* Bold labels */
+}
+
+input[type="email"] {
+    width: 100%; /* Full width */
+    padding: 10px; /* Space inside input */
+    margin-bottom: 15px; /* Space below input */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 3px; /* Slightly rounded edges */
+}
+
+button {
+    width: 100%; /* Full width */
+    padding: 10px;
+    background-color: #5cb85c; /* Bootstrap success color */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 3px; /* Slightly rounded edges */
+    font-size: 16px; /* Bigger font for button */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+button:hover {
+    background-color: #4cae4c; /* Darker green on hover */
+}
+
+p {
+    margin-top: 15px; /* Space above paragraph */
+    text-align: center; /* Center text */
+}
+
+a {
+    color: #007bff; /* Bootstrap primary color */
+    text-decoration: none; /* No underline */
+}
+
+a:hover {
+    text-decoration: underline; /* Underline on hover */
+}

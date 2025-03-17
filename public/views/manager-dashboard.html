@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/manager.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Include jQuery first -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Include Select2 CSS and JS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="../js/manager.js" defer></script>
+    <title>Manager Dashboard</title>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <div id="toggle" class="toggle-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul>
+            <li data-content="home" id="homeBtn" class="active">
+                <i class="fas fa-home"></i>
+                <span class="link-text">Home</span>
+            </li>
+            <li data-content="dashboard" id="dashboardBtn">
+                <i class="fas fa-tachometer-alt"></i>
+                <span class="link-text">Dashboard</span>
+            </li>
+            <li data-content="payroll" id="payrollBtn">
+                <i class="fas fa-money-bill"></i>
+                <span class="link-text">Payroll</span>
+            </li>
+        </ul>
+    </div>
+    <!-- Top Bar with User Info -->
+    <div id="top-bar">
+        <span id="user-name">Manager Name</span>
+        <button onclick="logout()" id="logout-btn">Logout</button>
+    </div>
+
+    <div class="content" id="content">
+        <!-- Home Section (Assigned Projects) -->
+        <div id="home" class="content-section">
+            <h2>Assigned project to Managers for Work</h2>
+            <table border="1" id="asssigned-table" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Project Id</th>
+                        <th>Project Name</th>
+                        <th>Profile Name</th>
+                        <th>Sheet Name</th>
+                        <th>Total Entries</th>
+                        <th>ProjectType</th>
+                        <th>fixed Option</th>
+                        <th>Lumpsum Price</th>
+                        <th>Price Worker One</th>
+                        <th>Price Worker Two</th>
+                        <th>Price Per Hour</th>
+                        <th>Shift</th>
+                        <th>Go to Project</th> <!-- New column -->
+                        <th>Submit Project</th> <!-- New column -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Assigned projects will be populated here -->
+                    <tr>
+                        <td colspan="4">No data available</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Submitted Projects</h3>
+            <table border="1" id="submitted-table" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Project Id</th>
+                        <th>Project Name</th>
+                        <th>Profile Name</th>
+                        <th>Sheet Name</th>
+                        <th>ProjectType</th>
+                        <th>fixed Option</th>
+                        <th>Price Worker One</th>
+                        <th>Price Worker Two</th>
+                        <th>lumpsum Price</th>
+                        <th>Shift</th>
+                        <th>Assigned to</th>
+                        <th>Go to Project</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="8">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Assigned Table -->
+            <h3>Fixed Assigned Projects</h3>
+            <table border="1" id="assigned-table" class="data-table" class="hidden">
+                <thead>
+                    <tr>
+                        <th>Project Id</th>
+                        <th>Project Name</th>
+                        <th>Profile Name</th>
+                        <th>Sheet Name</th>
+                        <th>Total Entries</th>
+                        <th>ProjectType</th>
+                        <th>fixed Option</th>
+                        <th>Lumpsum Price</th>
+                        <th>Price Worker One</th>
+                        <th>Price Worker Two</th>
+                        <th>Shift</th>
+                        <th>Assign to</th>
+                        <th>Go to Project</th> <!-- New column -->
+                        <th>Edit</th> <!-- New Edit column -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Assigned projects will be populated here -->
+                    <tr>
+                        <td colspan="4">No data available</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Unassigned Table -->
+            <h3>Fixed Unassigned Projects</h3>
+            <table border="1" id="unassigned-table" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Project Id</th>
+                        <th>Project Name</th>
+                        <th>Profile Name</th>
+                        <th>Sheet Name</th>
+                        <th>Total Entries</th>
+                        <th>ProjectType</th>
+                        <th>fixedOption</th>
+                        <th>Lumpsum Price</th>
+                        <th>Price Worker One</th>
+                        <th>Price Worker Two</th>
+                        <th>Shift</th>
+                        <th>Go to Project</th> <!-- New column -->
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Unassigned projects will be populated here -->
+                    <tr>
+                        <td colspan="4">No data available</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3> Hourly Assigned Projects</h3>
+            <table border="1" id="hourly-assigned-table" class="data-table" class="hidden">
+                <thead>
+                    <tr>
+                        <th>Project Id</th>
+                        <th>Project Name</th>
+                        <th>Profile Name</th>
+                        <th>Sheet Name</th>
+                        <th>Total Entries</th>
+                        <th>ProjectType</th>
+                        <th>Price Per Hour</th>
+                        <th>Shift</th>
+                        <th>Assign to</th>
+                        <th>Go to Project</th> <!-- New column -->
+                        <th>Edit</th> <!-- New Edit column -->
+                        <th>Hourly Calculation</th> <!-- New column -->
+                        <th>Mark as Completed</th> <!-- New column -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Assigned projects will be populated here -->
+                    <tr>
+                        <td colspan="4">No data available</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!--  Hourly Unassigned Table -->
+            <h3> Hourly Unassigned Projects</h3>
+            <table border="1" id="hourly-unassigned-table" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Project Id</th>
+                        <th>Project Name</th>
+                        <th>Profile Name</th>
+                        <th>Sheet Name</th>
+                        <th>Total Entries</th>
+                        <th>ProjectType</th>
+                        <th>Price Per Hour</th>
+                        <th>Shift</th>
+                        <th>Go to Project</th> <!-- New column -->
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Unassigned projects will be populated here -->
+                    <tr>
+                        <td colspan="4">No data available</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Placeholder for dynamically generated project-specific table -->
+            <div id="project-specific-container" style="margin-top: 20px;"></div>
+
+
+
+
+
+
+
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="content-section hidden">
+            <h2>Manager Dashboard Content</h2>
+            <p>Here is the dashboard content.</p>
+            <!-- Buttons Row -->
+
+            <div class="button-row">
+                <button id="addProject" class="action-btn">Add Project</button>
+                <button id="addProjectWithFile" class="action-btn">Add Project with File</button> <!-- New Button -->
+                <button id="addColumn" class="action-btn">Add Column</button>
+                <button id="addHourlyProject" class="action-btn">Add Hourly Project</button>
+                <button id="addHourlyProjectWithFile" class="action-btn">Add Hourly Project with file</button>
+            </div>
+
+            <!-- Add Project Form (Updated with checkboxes) -->
+            <div id="addProjectForm" class="form-container hidden">
+                <h3>Add a New Project</h3>
+                <form id="addProjectFormElement">
+                    <label for="projectId">Project ID:</label>
+                    <input type="text" placeholder="Add unique Project ID" id="projectId" name="projectId" required />
+
+                    <label for="projectName">Project Name:</label>
+                    <input type="text" placeholder="Add unique Project Name" id="projectName" name="projectName"
+                        required />
+
+                    <label for="profileName">Profile Name:</label>
+                    <input type="text" placeholder="Add Profile Name" id="profileName" name="profileName" required />
+
+                    <label for="sheetName">Sheet Name:</label>
+                    <input type="text" placeholder="Add Sheet Name" id="sheetName" name="sheetName" required />
+
+                    <label for="totalEntries">Total Entries:</label>
+                    <input type="number" placeholder="Add Total Entries" id="totalEntries" name="totalEntries"
+                        required />
+
+                    <!-- Hidden Project Type Field -->
+                    <input type="hidden" name="projectType" value="fixed">
+
+                    <label for="fixedOption">Fixed Option:</label>
+                    <div>
+                        <input type="radio" id="lumpsumOption" name="fixedOption" value="Lumpsum" />
+                        <label for="lumpsumOption">Lumpsum</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="doubleEntryOption" name="fixedOption" value="Double Entry" />
+                        <label for="doubleEntryOption">Double Entry</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="singleEntryOption" name="fixedOption" value="Single Entry" />
+                        <label for="singleEntryOption">Single Entry</label>
+                    </div>
+
+                    <!-- Lumpsum Price -->
+                    <div id="lumpsumPriceField" class="hidden">
+                        <label for="lumpsumPrice">Lumpsum Price:</label>
+                        <input type="number" id="lumpsumPrice" name="lumpsumPrice" />
+                    </div>
+
+                    <!-- Double Entry Fields -->
+                    <div id="doubleEntryFields" class="hidden">
+                        <label for="priceWorkerOne">Price for Worker One:</label>
+                        <input type="number" id="priceWorkerOne" name="priceWorkerOne" />
+
+                        <label for="priceWorkerTwo">Price for Worker Two:</label>
+                        <input type="number" id="priceWorkerTwo" name="priceWorkerTwo" />
+                    </div>
+
+                    <!-- Single Entry Price -->
+                    <div id="singleEntryPriceField" class="hidden">
+                        <label for="pricePerEntry">Price Per Entry:</label>
+                        <input type="number" id="pricePerEntry" name="pricePerEntry" />
+                    </div>
+
+
+                    <label for="workType">Work Type:</label>
+                    <div>
+                        <input type="radio" id="leadGenerationOption" name="workType" value="Lead Generation" />
+                        <label for="leadGenerationOption">Lead Generation</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="influencerResearchOption" name="workType" value="Influencer Research" />
+                        <label for="influencerResearchOption">Influencer Research</label>
+                    </div>
+
+
+                    <!-- Other Fields -->
+                    <label for="managers">Select Managers:</label>
+                    <select id="managers" name="managers[]" multiple="multiple" required></select>
+
+
+                    <label for="instructions">Instructions:</label>
+                    <textarea id="instructions" name="instructions"
+                        placeholder="Add instructions in points (e.g., use bullets)." rows="5"></textarea>
+
+                    <label for="projectColumns">Add Project Columns:</label>
+                    <select id="projectColumns" name="projectColumns[]" multiple="multiple" required></select>
+
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+
+            </div>
+
+            <!-- Add Project with File Form -->
+            <div id="addProjectWithFileForm" class="form-container hidden">
+                <h3>Add a New Project with File</h3>
+                <form id="addProjectWithFileFormElement" enctype="multipart/form-data">
+                    <label for="projectIdWithFile">Project ID:</label>
+                    <input type="text" placeholder="Add unique Project ID" id="projectIdWithFile" name="projectId"
+                        required />
+
+                    <label for="projectNameWithFile">Project Name:</label>
+                    <input type="text" placeholder="Add unique Project Name" id="projectNameWithFile" name="projectName"
+                        required />
+
+                    <label for="profileNameWithFile">Profile Name:</label>
+                    <input type="text" placeholder="Add Profile Name" id="profileNameWithFile" name="profileName"
+                        required />
+
+                    <label for="sheetNameWithFile">Sheet Name:</label>
+                    <input type="text" placeholder="Add Sheet Name" id="sheetNameWithFile" name="sheetName" required />
+
+                    <label for="totalEntriesWithFile">Total Entries:</label>
+                    <input type="number" placeholder="Add Total Entries" id="totalEntriesWithFile" name="totalEntries"
+                        required />
+
+                    <!-- Hidden Project Type Field -->
+                    <input type="hidden" name="projectType" value="fixed">
+
+                    <label for="fixedOptionWithFile">Fixed Option:</label>
+                    <div>
+                        <input type="radio" id="lumpsumOptionWithFile" name="fixedOption" value="Lumpsum" />
+                        <label for="lumpsumOptionWithFile">Lumpsum</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="doubleEntryOptionWithFile" name="fixedOption" value="Double Entry" />
+                        <label for="doubleEntryOptionWithFile">Double Entry</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="singleEntryOptionWithFile" name="fixedOption" value="Single Entry" />
+                        <label for="singleEntryOptionWithFile">Single Entry</label>
+                    </div>
+
+                    <!-- Lumpsum Price -->
+                    <div id="lumpsumPriceFieldWithFile" class="hidden">
+                        <label for="lumpsumPriceWithFile">Lumpsum Price:</label>
+                        <input type="number" id="lumpsumPriceWithFile" name="lumpsumPrice" />
+                    </div>
+
+                    <!-- Double Entry Fields -->
+                    <div id="doubleEntryFieldsWithFile" class="hidden">
+                        <label for="priceWorkerOneWithFile">Price for Worker One:</label>
+                        <input type="number" id="priceWorkerOneWithFile" name="priceWorkerOne" />
+
+                        <label for="priceWorkerTwoWithFile">Price for Worker Two:</label>
+                        <input type="number" id="priceWorkerTwoWithFile" name="priceWorkerTwo" />
+                    </div>
+
+                    <!-- Single Entry Field -->
+                    <div id="singleEntryFieldWithFile" class="hidden">
+                        <label for="pricePerEntryWithFile">Price Per Entry:</label>
+                        <input type="number" id="pricePerEntryWithFile" name="pricePerEntry" />
+                    </div>
+
+                    <label for="workType">Work Type:</label>
+                    <div>
+                        <input type="radio" id="leadGenerationOption" name="workType" value="Lead Generation" />
+                        <label for="leadGenerationOption">Lead Generation</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="influencerResearchOption" name="workType" value="Influencer Research" />
+                        <label for="influencerResearchOption">Influencer Research</label>
+                    </div>
+
+                    <label for="managersWithFile">Select Managers:</label>
+                    <select id="managersWithFile" name="shift[]" multiple="multiple" required></select>
+
+                    <label for="instructionsWithFile">Instructions:</label>
+                    <textarea id="instructionsWithFile" name="instructions"
+                        placeholder="Add instructions in points (e.g., use bullets)." rows="5"></textarea>
+
+                    <label for="fileUpload">Upload File:</label>
+                    <input type="file" id="fileUpload" name="fileUpload" accept=".csv, .xlsx" required />
+
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+
+
+
+
+
+            <!-- Add Column Form (Initially Hidden) -->
+            <div id="addColumnForm" class="form-container hidden">
+                <h3>Add a New Column</h3>
+                <form id="addColumnFormElement">
+                    <input type="text" id="columnName" name="columnName" required />
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+
+            <!-- Add hpurly project without file -->
+            <div id="addHourlyProjectForm" class="form-container hidden">
+                <h3>Add an Hourly Project</h3>
+                <form id="addHourlyProjectFormElement">
+                    <label for="hourlyProjectId">Project ID:</label>
+                    <input type="text" placeholder="Add unique Project ID" id="hourlyProjectId" name="projectId"
+                        required />
+
+                    <label for="hourlyProjectName">Project Name:</label>
+                    <input type="text" placeholder="Add unique Project Name" id="hourlyProjectName" name="projectName"
+                        required />
+
+                    <label for="hourlyProfileName">Profile Name:</label>
+                    <input type="text" placeholder="Add Profile Name" id="hourlyProfileName" name="profileName"
+                        required />
+
+                    <label for="hourlySheetName">Sheet Name:</label>
+                    <input type="text" placeholder="Add Sheet Name" id="hourlySheetName" name="sheetName" required />
+
+                    <label for="hourlyTotalEntries">Total Entries:</label>
+                    <input type="number" placeholder="Add Total Entries" id="hourlyTotalEntries" name="totalEntries"
+                        required />
+
+                    <!-- Hidden Project Type Field -->
+                    <input type="hidden" name="projectType" value="hourly">
+
+                    <label for="hourlyPricePerHour">Price Per Hour:</label>
+                    <input type="number" id="hourlyPricePerHour" name="pricePerHour" required />
+
+                    <label for="workType">Work Type:</label>
+                    <div>
+                        <input type="radio" id="leadGenerationOption" name="workType" value="Lead Generation"
+                            required />
+                        <label for="leadGenerationOption">Lead Generation</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="influencerResearchOption" name="workType" value="Influencer Research"
+                            required />
+                        <label for="influencerResearchOption">Influencer Research</label>
+                    </div>
+
+                    <label for="managers">Select Managers:</label>
+                    <select id="hourlymanagers" name="managers[]" multiple="multiple" required></select>
+
+                    <label for="hourlyInstructions">Instructions:</label>
+                    <textarea id="hourlyInstructions" name="instructions" placeholder="Add instructions in points."
+                        rows="5"></textarea>
+
+                    <label for="hourlyProjectColumns">Add Project Columns:</label>
+                    <select id="hourlyProjectColumns" name="projectColumns[]" multiple="multiple" required></select>
+
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+
+
+
+
+
+
+            <!-- Add hourly project without file -->
+            <div id="addHourlyProjectWithFileForm" class="form-container hidden">
+                <h3>Add Hourly Project with File</h3>
+                <form id="addHourlyProjectWithFileFormElement" enctype="multipart/form-data">
+                    <label for="hourlyProjectIdWithFile">Project ID:</label>
+                    <input type="text" placeholder="Add unique Project ID" id="hourlyProjectIdWithFile" name="projectId"
+                        required />
+
+                    <label for="hourlyProjectNameWithFile">Project Name:</label>
+                    <input type="text" placeholder="Add unique Project Name" id="hourlyProjectNameWithFile"
+                        name="projectName" required />
+
+                    <label for="hourlyProfileNameWithFile">Profile Name:</label>
+                    <input type="text" placeholder="Add Profile Name" id="hourlyProfileNameWithFile" name="profileName"
+                        required />
+
+                    <label for="hourlySheetNameWithFile">Sheet Name:</label>
+                    <input type="text" placeholder="Add Sheet Name" id="hourlySheetNameWithFile" name="sheetName"
+                        required />
+
+                    <label for="hourlyTotalEntriesWithFile">Total Entries:</label>
+                    <input type="number" placeholder="Add Total Entries" id="hourlyTotalEntriesWithFile"
+                        name="totalEntries" required />
+
+                    <!-- Hidden Project Type Field -->
+                    <input type="hidden" name="projectType" value="hourly">
+
+                    <label for="hourlyPricePerHourWithFile">Price Per Hour:</label>
+                    <input type="number" id="hourlyPricePerHourWithFile" name="pricePerHour" required />
+
+
+                    <label for="workType">Work Type:</label>
+                    <div>
+                        <input type="radio" id="leadGenerationOption" name="workType" value="Lead Generation"
+                            required />
+                        <label for="leadGenerationOption">Lead Generation</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="influencerResearchOption" name="workType" value="Influencer Research"
+                            required />
+                        <label for="influencerResearchOption">Influencer Research</label>
+                    </div>
+
+                    <label for="managersWithFile">Select Managers:</label>
+                    <select id="hourlymanagersWithFile" name="managers[]" multiple="multiple" required></select>
+
+                    <label for="hourlyInstructionsWithFile">Instructions:</label>
+                    <textarea id="hourlyInstructionsWithFile" name="instructions"
+                        placeholder="Add instructions in points." rows="5"></textarea>
+
+                    <label for="fileUploadHourlyProject">Upload File:</label>
+                    <input type="file" id="fileUploadHourlyProject" name="fileUpload" accept=".csv, .xlsx" required />
+
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+
+
+
+        </div>
+
+        <!-- Payroll Section -->
+        <div id="payroll" class="content-section hidden">
+            <h2>Payroll Content</h2>
+            <p>Here is the payroll content.</p>
+        </div>
+    </div>
+
+    <!-- Assign Modal -->
+    <div id="assignModal" class="modal hidden">
+        <div class="modal-content">
+            <span id="closeModal" class="close-btn">&times;</span>
+            <h3>Assign Project</h3>
+
+            <form id="assignProjectForm">
+                <!-- Coordinator Section -->
+                <div id="coordinator-section">
+                    <h4>Coordinators</h4>
+                    <div id="coordinatorCheckboxes">
+                        <!-- Coordinator checkboxes will be populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- User Section -->
+                <div id="user-section">
+                    <h4>Users</h4>
+                    <div id="userCheckboxes">
+                        <!-- User checkboxes will be populated dynamically -->
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Save</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Edit Modal -->
+    <div id="editAssignModal" class="modal hidden">
+        <div class="modal-content">
+            <span id="closeEditModal" class="close-btn">&times;</span>
+            <h3>Edit Assigned Users</h3>
+
+            <!-- Coordinators Section -->
+            <div id="coordinator-section-edit">
+                <h4>Coordinators</h4>
+                <div id="coordinatorCheckboxesEdit">
+                    <!-- Coordinator checkboxes will be populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Users Section -->
+            <div id="user-section-edit">
+                <h4>Users</h4>
+                <div id="userCheckboxesEdit">
+                    <!-- User checkboxes will be populated dynamically -->
+                </div>
+            </div>
+
+            <form id="editAssignProjectForm">
+                <button type="submit" class="submit-btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <div id="lumpsum-modal" style="display: none;">
+        <div class="modal-content">
+            <span id="close-lumpsum-modal" class="close-icon">&times;</span>
+            <h3>Lumpsum Salary Distribution</h3>
+            <table id="lumpsum-table" border="1">
+                <thead>
+                    <tr>
+                        <th>Worker Name</th>
+                        <th>Salary</th>
+                        <th>Lumpsum Price</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <button id="save-lumpsum" class="approve-btn">Save and Approve</button>
+        </div>
+    </div>
+
+
+
+
+    <!-- Hourly Calculation Modal -->
+    <div id="hourly-calculation-modal-overlay"></div>
+    <div id="hourly-calculation-modal">
+        <div class="hourly-modal-content">
+            <span id="close-hourly-modal" class="hourly-close-icon">&times;</span>
+            <h3>Hourly Salary Distribution</h3>
+            <table id="hourly-calculation-table" border="1">
+                <thead>
+                    <tr>
+                        <th>Worker Name</th>
+                        <th>Runned Hours</th>
+                        <th>Price Per Hour</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <button id="save-hourly-calculation" class="hourly-approve-btn">Save Data</button>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
