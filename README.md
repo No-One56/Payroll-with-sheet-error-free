@@ -1,35 +1,35 @@
 Office Management Dashboard
 A web-based office management system with role-based dashboards for Admin, Users, Managers, and Coordinators. The system allows admins to assign projects, track progress, and calculate salaries based on work contributions. It also integrates Google Sheets for seamless data management.
 
-🚀 Features
-✅ Admin Dashboard
+ Features
+ Admin Dashboard
 
 Add projects and assign them to users.
 Monitor progress and calculate salaries based on user work.
 Manage users and roles.
-✅ User Dashboard
+ User Dashboard
 
 View assigned projects and submit work.
 Track progress and earnings.
-✅ Manager Dashboard
+ Manager Dashboard
 
 Oversee team performance.
 Approve or request changes in project submissions.
-✅ Coordinator Dashboard
+ Coordinator Dashboard
 
 Help manage project distribution.
 Ensure smooth workflow between teams.
-✅ Google Sheets Integration
+ Google Sheets Integration
 
 Embedded Google Sheets for real-time data tracking.
 Export reports to Excel/CSV formats.
-🛠️ Tech Stack
+ Tech Stack
 Frontend: HTML, CSS, JavaScript
 Backend: Node.js, Express
 Database: MySQL / MongoDB (mention which one you used)
 File Handling: multer for uploads, fs for file management
 Google API: Google Sheets API for data handling
-📂 Project Structure
+ Project Structure
 bash
 Copy
 Edit
@@ -49,14 +49,14 @@ Edit
 │── package.json
 │── README.md
 📌 Installation & Setup
-1️⃣ Clone this repository
+1 Clone this repository
 
 bash
 Copy
 Edit
 git clone https://github.com/No-One56/payroll-with-sheet-error-free.git
 cd your-repo-name
-2️⃣ Install dependencies
+2 Install dependencies
 
 bash
 Copy
